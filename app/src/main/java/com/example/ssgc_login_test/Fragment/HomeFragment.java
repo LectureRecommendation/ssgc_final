@@ -32,6 +32,8 @@ import androidx.fragment.app.Fragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import java.io.IOException;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -86,14 +88,25 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onResponse(Call<List<Lecture>> call, Response<List<Lecture>> response) {
+                Log.i(TAG, "Response code: " + response.code());
                 if (response.isSuccessful() && response.body() != null) {
                     for (Lecture lecture : response.body()) {
                         textView.append(lecture.get강의명() + "\n");
+                        textView.append(lecture.get교수명() + "\n");
+                        textView.append(lecture.get강의시간() + "\n");
                     }
+                }else {
+                    try {
+                        Log.e(TAG, "Response error: " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Log.e(TAG, "Error message: " + response.message());
                 }
             }
             @Override
             public void onFailure(Call<List<Lecture>> call, Throwable t) {
+                Log.e(TAG, "Request failed: " + t.getMessage(), t);
                 Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
