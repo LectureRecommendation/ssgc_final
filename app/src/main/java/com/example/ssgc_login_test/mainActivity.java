@@ -1,5 +1,6 @@
 package com.example.ssgc_login_test;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -38,11 +39,25 @@ public class mainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //DB 생성
-        DBHelper helper;
-        SQLiteDatabase db;
-        helper = new DBHelper(mainActivity.this, "newdb.db", null, 1);
-        db = helper.getWritableDatabase();
-        helper.onCreate(db);
+
+// DB에서 강의 정보 읽어오기
+        DBHelper helper = new DBHelper(mainActivity.this, "mydb.db", null, 1);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+// 강의 정보 삽입
+        String lectureName = "컴퓨터 과학";
+        String professorName = "John Doe";
+        String lectureSchedule = "월/10-12,수/10-12";
+
+        ContentValues values = new ContentValues();
+        values.put("lecture_name", lectureName);
+        values.put("professor_name", professorName);
+        values.put("lecture_schedule", lectureSchedule);
+
+        long rowId = db.insert("lecture_table", null, values);
+        db.close();
+
+        //db.close();
 
         // 프래그먼트 생성
         fragment_home = new HomeFragment();

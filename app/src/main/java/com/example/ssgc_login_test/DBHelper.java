@@ -1,5 +1,6 @@
 package com.example.ssgc_login_test;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -12,12 +13,15 @@ public class DBHelper extends SQLiteOpenHelper {
     //DB 처음 만들 때 호출(초기 처리)
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE if not exists mytable ("
+        String sql = "CREATE TABLE if not exists lecture_table ("
                 + "_id integer primary key autoincrement,"
-                + "txt text);";
+                + "lecture_name text,"
+                + "professor_name text,"
+                + "lecture_schedule text);";
 
         db.execSQL(sql);
     }
+
 
     //DB 업그레이드 필요 시 호출
     @Override
