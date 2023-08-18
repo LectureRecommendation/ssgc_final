@@ -11,18 +11,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.ssgc_login_test.ApiService;
+import com.example.ssgc_login_test.Lecture;
 import com.example.ssgc_login_test.LoginActivity;
 import com.example.ssgc_login_test.R;
+import com.example.ssgc_login_test.RetrofitInstance;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.fragment.app.Fragment;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
 
+    private TextView textView;
     private View view;
     private GoogleSignInClient mGoogleSignInClient;
 
@@ -33,6 +48,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView");
         view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        textView = view.findViewById(R.id.textView);
+
+        loadLectures();
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -60,6 +79,25 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    private void loadLectures() {
+        ApiService apiService = RetrofitInstance.getApiService();
+
+        apiService.getFilteredAndSortedLectures().enqueue(new Callback<List<Lecture>>() {
+
+            @Override
+            public void onResponse(Call<List<Lecture>> call, Response<List<Lecture>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    for (Lecture lecture : response.body()) {
+                        textView.append(lecture.get강의명() + "\n");
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Lecture>> call, Throwable t) {
+                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     // 'private' 메서드는 'onCreateView' 메서드 내부에서 정의할 수 없습니다. 클래스 수준으로 이동시켜야 합니다.
     private void signOut() {
         mGoogleSignInClient.signOut()

@@ -25,7 +25,7 @@ import com.example.ssgc_login_test.Settings;
 
 public class UserFragment extends Fragment {
 
-    String[] grades = {"15", "16", "17", "18", "19", "20", "21"};
+    String[] grades = {"1", "2", "3", "4"};
     String[] schedule = {"공강 유무", "점심시간 확보", "오전 수업 위주", "오후 수업 위주"};
 
     @Nullable
