@@ -1,6 +1,7 @@
 package com.example.ssgc_login_test;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -35,6 +36,13 @@ public class mainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //DB 생성
+        DBHelper helper;
+        SQLiteDatabase db;
+        helper = new DBHelper(mainActivity.this, "newdb.db", null, 1);
+        db = helper.getWritableDatabase();
+        helper.onCreate(db);
 
         // 프래그먼트 생성
         fragment_home = new HomeFragment();
