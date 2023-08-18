@@ -54,8 +54,10 @@ public class mainActivity extends AppCompatActivity {
         // 바텀 네비게이션
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
+        //아래 코드로 수정
+        getSupportFragmentManager().beginTransaction().add(R.id.main_layout, new HomeFragment()).commit();
         // 초기 플래그먼트 설정
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_home).commitAllowingStateLoss();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_home).commitAllowingStateLoss();
 
 
         // 바텀 네비게이션
