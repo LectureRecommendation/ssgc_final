@@ -25,6 +25,7 @@
             android:name=".mainActivity">
             <!-- Any other attributes or configurations you need for this Activity -->
         </activity>
+        <activity android:name=".ClassSelect"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

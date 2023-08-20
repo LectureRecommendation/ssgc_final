@@ -8,5 +8,6 @@ import retrofit2.http.GET;
 public interface ApiService {
     @GET("filter_and_sort")
     Call<List<Lecture>> getFilteredAndSortedLectures();
+
 }
 
