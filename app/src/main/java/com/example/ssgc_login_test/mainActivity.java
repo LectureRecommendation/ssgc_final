@@ -43,11 +43,6 @@ public class mainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //테이블 프레그먼트 추가
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.timetableLayout, new TimetableFragment());
-        transaction.commit();
 
 // DB에서 강의 정보 읽어오기
         DBHelper helper = new DBHelper(mainActivity.this, "mydb.db", null, 1);
@@ -80,9 +75,9 @@ public class mainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         //아래 코드로 수정
-        getSupportFragmentManager().beginTransaction().add(R.id.main_layout, new TimetableFragment()).commit();
+        ///getSupportFragmentManager().beginTransaction().add(R.id.main_layout, new TimetableFragment()).commit();
         // 초기 플래그먼트 설정
-        //getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_home).commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_home).commitAllowingStateLoss();
 
 
         // 바텀 네비게이션
@@ -98,7 +93,7 @@ public class mainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.home:
                         Log.i(TAG, "home 들어옴");
-                        getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_timetable).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_home).commitAllowingStateLoss();
                         return true;
                     case R.id.cal:
                         Log.i(TAG, "cal 들어옴");

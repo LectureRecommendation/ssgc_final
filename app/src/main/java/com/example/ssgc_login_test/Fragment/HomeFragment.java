@@ -48,8 +48,6 @@ public class HomeFragment extends Fragment {
 
         textView = view.findViewById(R.id.textView);
 
-        loadLectures();
-
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -71,6 +69,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 signOut();
+            }
+        });
+
+        view.findViewById(R.id.get_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadLectures();
             }
         });
 

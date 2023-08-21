@@ -65,8 +65,7 @@ public class UserFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
-        View anotherLayout = inflater.inflate(R.layout.fragment_home, container, false);
-        TextView anotherTextView = anotherLayout.findViewById(R.id.textView);
+
 
 
 
@@ -101,7 +100,7 @@ public class UserFragment extends Fragment {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://<YOUR_FLASK_SERVER_IP>:5000/");
+                    URL url = new URL("http://10.0.2.2:5000/");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
