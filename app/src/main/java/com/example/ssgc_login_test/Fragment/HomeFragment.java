@@ -53,12 +53,13 @@ public class HomeFragment extends Fragment {
 
         textView = view.findViewById(R.id.textView);
 
-
+        loadLectures();
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
+
 
         //mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         // 프래그먼트에서는 `this` 대신 `getActivity()`를 사용해야 합니다.
@@ -92,5 +93,35 @@ public class HomeFragment extends Fragment {
                         startActivity(new Intent(getActivity(), LoginActivity.class));
                     }
                 });
+    }
+    private void loadLectures() {
+        ApiService apiService = RetrofitInstance.getApiService();
+
+        apiService.getFilteredAndSortedLectures().enqueue(new Callback<List<Lecture>>() {
+
+            @Override
+            public void onResponse(Call<List<Lecture>> call, Response<List<Lecture>> response) {
+                Log.i(TAG, "Response code: " + response.code());
+                if (response.isSuccessful() && response.body() != null) {
+                    for (Lecture lecture : response.body()) {
+                        textView.append(lecture.get강의명() + "\n");
+                        textView.append(lecture.get교수명() + "\n");
+                        textView.append(lecture.get강의시간() + "\n");
+                    }
+                }else {
+                    try {
+                        Log.e(TAG, "Response error: " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Log.e(TAG, "Error message: " + response.message());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Lecture>> call, Throwable t) {
+                Log.e(TAG, "Request failed: " + t.getMessage(), t);
+                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

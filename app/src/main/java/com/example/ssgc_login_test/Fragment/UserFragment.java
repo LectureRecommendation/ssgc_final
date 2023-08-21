@@ -83,7 +83,6 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 sendPostRequest();
-                loadLectures();
             }
         });
 
@@ -137,35 +136,5 @@ public class UserFragment extends Fragment {
             }
         });
         thread.start();
-    }
-    private void loadLectures() {
-        ApiService apiService = RetrofitInstance.getApiService();
-
-        apiService.getFilteredAndSortedLectures().enqueue(new Callback<List<Lecture>>() {
-
-            @Override
-            public void onResponse(Call<List<Lecture>> call, Response<List<Lecture>> response) {
-                Log.i(TAG, "Response code: " + response.code());
-                if (response.isSuccessful() && response.body() != null) {
-                    for (Lecture lecture : response.body()) {
-                        anotherTextView.append(lecture.get강의명() + "\n");
-                        anotherTextView.append(lecture.get교수명() + "\n");
-                        anotherTextView.append(lecture.get강의시간() + "\n");
-                    }
-                }else {
-                    try {
-                        Log.e(TAG, "Response error: " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Log.e(TAG, "Error message: " + response.message());
-                }
-            }
-            @Override
-            public void onFailure(Call<List<Lecture>> call, Throwable t) {
-                Log.e(TAG, "Request failed: " + t.getMessage(), t);
-                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }
