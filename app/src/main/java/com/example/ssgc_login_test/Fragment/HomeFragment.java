@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment {
 
         textView = view.findViewById(R.id.textView);
 
+        loadLectures();
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
