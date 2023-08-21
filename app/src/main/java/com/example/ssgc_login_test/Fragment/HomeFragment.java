@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
 
         textView = view.findViewById(R.id.textView);
 
-        loadLectures();
+
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -76,36 +76,6 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void loadLectures() {
-        ApiService apiService = RetrofitInstance.getApiService();
-
-        apiService.getFilteredAndSortedLectures().enqueue(new Callback<List<Lecture>>() {
-
-            @Override
-            public void onResponse(Call<List<Lecture>> call, Response<List<Lecture>> response) {
-                Log.i(TAG, "Response code: " + response.code());
-                if (response.isSuccessful() && response.body() != null) {
-                    for (Lecture lecture : response.body()) {
-                        textView.append(lecture.get강의명() + "\n");
-                        textView.append(lecture.get교수명() + "\n");
-                        textView.append(lecture.get강의시간() + "\n");
-                    }
-                }else {
-                    try {
-                        Log.e(TAG, "Response error: " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Log.e(TAG, "Error message: " + response.message());
-                }
-            }
-            @Override
-            public void onFailure(Call<List<Lecture>> call, Throwable t) {
-                Log.e(TAG, "Request failed: " + t.getMessage(), t);
-                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
     // 'private' 메서드는 'onCreateView' 메서드 내부에서 정의할 수 없습니다. 클래스 수준으로 이동시켜야 합니다.
     private void signOut() {
         mGoogleSignInClient.signOut()

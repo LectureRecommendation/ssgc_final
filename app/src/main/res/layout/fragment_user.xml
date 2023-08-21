@@ -65,7 +65,7 @@
 
 
         <TextView
-            android:id="@+id/graduateGrade"
+            android:id="@+id/outclass"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@drawable/view_border"
@@ -80,6 +80,21 @@
             app:layout_constraintVertical_bias="0.326" />
 
         <TextView
+            android:id="@+id/inclass"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/view_border"
+            android:padding="8dp"
+            android:text="포함 시킬 강의"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.531"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.396" />
+
+        <TextView
             android:id="@+id/majorCount"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -92,7 +107,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.396" />
+            app:layout_constraintVertical_bias="0.467" />
 
         <TextView
             android:id="@+id/generalCount"
@@ -107,52 +122,24 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.467" />
-
-        <Button
-            android:id="@+id/btnClass"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/view_border"
-            android:backgroundTint="#5C65BB"
-            android:text="수업선택"
-            android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.674" />
-
-        <Button
-            android:id="@+id/btnSchedule"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#00FFFFFF"
-            android:text="개인일정"
-            android:textColor="#000000"
-            android:background="@drawable/view_border"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.774" />
+            app:layout_constraintVertical_bias="0.543" />
 
         <TextView
-            android:id="@+id/schedule"
+            android:id="@+id/emptytime"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@drawable/view_border"
             android:padding="8dp"
-            android:text="시간표 유형"
+            android:text="공강 시간"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.531"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56" />
+            app:layout_constraintVertical_bias="0.625" />
 
         <ImageButton
             android:id="@+id/btnSettings"
@@ -168,19 +155,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.076" />
 
-        <Spinner
-            android:id="@+id/sp_grade"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.256" />
-
         <EditText
-            android:id="@+id/edt_graduate"
+            android:id="@+id/edt_grade"
             android:layout_width="150dp"
             android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -192,7 +168,19 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edt_major"
+            android:id="@+id/edt_outclass"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.243"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/edt_inclass"
             android:layout_width="150dp"
             android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -201,6 +189,19 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.389"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/edt_major"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.459"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
@@ -213,20 +214,30 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.459"
+            app:layout_constraintVertical_bias="0.618"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <Spinner
-            android:id="@+id/sp_schedule"
+        <EditText
+            android:id="@+id/edt_emptytime"
             android:layout_width="150dp"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
+            android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.564" />
+            app:layout_constraintVertical_bias="0.536"
+            tools:ignore="SpeakableTextPresentCheck" />
 
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추천 시간표 생성하기"
+            tools:layout_editor_absoluteX="129dp"
+            tools:layout_editor_absoluteY="445dp"
+            tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
