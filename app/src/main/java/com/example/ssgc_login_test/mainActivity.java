@@ -13,7 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ssgc_login_test.Fragment.CalFragment;
 import com.example.ssgc_login_test.Fragment.HomeFragment;
+import com.example.ssgc_login_test.Fragment.TimetableFragment;
 import com.example.ssgc_login_test.Fragment.UserFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +32,7 @@ public class mainActivity extends AppCompatActivity {
 
     // 프래그먼트 변수
     Fragment fragment_home;
+    Fragment fragment_timetable;
     Fragment fragment_cal;
     Fragment fragment_user;
 
@@ -38,7 +43,11 @@ public class mainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //DB 생성
+        //테이블 프레그먼트 추가
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.timetableLayout, new TimetableFragment());
+        transaction.commit();
 
 // DB에서 강의 정보 읽어오기
         DBHelper helper = new DBHelper(mainActivity.this, "mydb.db", null, 1);
@@ -61,6 +70,7 @@ public class mainActivity extends AppCompatActivity {
 
         // 프래그먼트 생성
         fragment_home = new HomeFragment();
+        fragment_timetable = new TimetableFragment();
         fragment_cal = new CalFragment();
         fragment_user = new UserFragment();
 
@@ -70,7 +80,7 @@ public class mainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         //아래 코드로 수정
-        getSupportFragmentManager().beginTransaction().add(R.id.main_layout, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.main_layout, new TimetableFragment()).commit();
         // 초기 플래그먼트 설정
         //getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_home).commitAllowingStateLoss();
 
@@ -88,7 +98,7 @@ public class mainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.home:
                         Log.i(TAG, "home 들어옴");
-                        getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_home).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_timetable).commitAllowingStateLoss();
                         return true;
                     case R.id.cal:
                         Log.i(TAG, "cal 들어옴");
