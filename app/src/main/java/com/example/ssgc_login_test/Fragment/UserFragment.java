@@ -100,7 +100,7 @@ public class UserFragment extends Fragment {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://10.0.2.2:5000/");
+                    URL url = new URL("http://127.0.0.1:5000/");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");

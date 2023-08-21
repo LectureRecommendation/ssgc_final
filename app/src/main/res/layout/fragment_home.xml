@@ -7,15 +7,15 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="412dp"
-        android:layout_height="581dp"
+        android:layout_width="354dp"
+        android:layout_height="560dp"
         android:text="Lectures:\n"
         android:textColor="#0B0B0B"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="4dp" />
+        tools:layout_editor_absoluteY="25dp" />
 
     <Button
         android:id="@+id/sign_out_button"
