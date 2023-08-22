@@ -54,7 +54,7 @@ import retrofit2.Response;
 public class UserFragment extends Fragment {
 
     private ApiService apiService;
-    private TextView anotherTextView;
+    private TextView lecturesListTextView;
     private String TAG = "프래그먼트";
     EditText Grade;
     EditText Outclass;
@@ -71,6 +71,7 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
 
+        lecturesListTextView = view.findViewById(R.id.lectures_list_text_view);
 
         Grade = view.findViewById(R.id.edt_grade);
         Inclass = view.findViewById(R.id.edt_inclass);
@@ -121,6 +122,18 @@ public class UserFragment extends Fragment {
             public void onResponse(Call<List<Lecture>> call, Response<List<Lecture>> response) {
                 if (response.isSuccessful()) {
                     // POST 요청에 대한 응답을 처리하는 로직을 여기에 추가하세요.
+                    List<Lecture> lectures = response.body();
+                    StringBuilder lecturesText = new StringBuilder();
+
+                    // 강의 목록을 텍스트 형태로 변환
+                    for (Lecture lecture : lectures) {
+                        lecturesText.append(lecture.get강의명() + "\n");
+                        lecturesText.append(lecture.get교수명() + "\n");
+                        lecturesText.append(lecture.get강의시간() + "\n");
+                    }
+                    // TextView에 강의 목록 설정
+                    lecturesListTextView.setText(lecturesText.toString());
+
                 } else {
                     try {
                         Log.e(TAG, "Response error: " + response.errorBody().string());
