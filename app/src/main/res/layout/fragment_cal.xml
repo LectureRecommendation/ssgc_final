@@ -41,4 +41,12 @@
             android:text="평균 성적 평점: 0"
             android:layout_marginTop="16dp" />
 
+        <LinearLayout
+            android:id="@+id/subject_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+                <!-- 여기에 추가한 강의 목록이 동적으로 생성됩니다. -->
+        </LinearLayout>
+
 </LinearLayout>
