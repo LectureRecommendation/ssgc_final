@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ssgc_login_test.ApiService;
 import com.example.ssgc_login_test.ClassSelect;
+import com.example.ssgc_login_test.DataStore;
 import com.example.ssgc_login_test.Lecture;
 import com.example.ssgc_login_test.PersonalSchedule;
 import com.example.ssgc_login_test.R;
@@ -89,7 +90,6 @@ public class UserFragment extends Fragment {
             }
         });
 
-
         ImageButton btnSettings = view.findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), Settings.class);
@@ -123,6 +123,7 @@ public class UserFragment extends Fragment {
                 if (response.isSuccessful()) {
                     // POST 요청에 대한 응답을 처리하는 로직을 여기에 추가하세요.
                     List<Lecture> lectures = response.body();
+                    DataStore.getInstance().setLectures(lectures);
                     StringBuilder lecturesText = new StringBuilder();
 
                     // 강의 목록을 텍스트 형태로 변환

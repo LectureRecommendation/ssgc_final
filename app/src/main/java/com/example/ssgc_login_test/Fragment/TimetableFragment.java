@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.ssgc_login_test.DataStore;
 import com.example.ssgc_login_test.Lecture;
 import com.example.ssgc_login_test.R;
 import com.example.ssgc_login_test.RetrofitInstance;
@@ -35,8 +36,13 @@ public class TimetableFragment extends Fragment {
 
         timetableLayout = view.findViewById(R.id.timetableLayout);
 
-        // 강의 정보를 받아올 리스트 (API 호출로 변경)
-        loadLectures();
+        List<Lecture> lectures = DataStore.getInstance().getLectures();
+        if (lectures != null) {
+            // 레이아웃에 데이터 표시하기
+            for (Lecture lecture : lectures) {
+                addLectureToTimetable(lecture);
+            }
+        }
 
         return view;
     }
@@ -87,37 +93,6 @@ public class TimetableFragment extends Fragment {
         return newRow;
     }
 
-    // 강의 정보를 받아오는 메서드 (API 호출)
-    private void loadLectures() {
-        ApiService apiService = RetrofitInstance.getApiService();
 
-        apiService.getFilteredAndSortedLectures().enqueue(new Callback<List<Lecture>>() {
-
-            @Override
-            public void onResponse(Call<List<Lecture>> call, Response<List<Lecture>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    List<Lecture> lectureList = response.body();
-
-                    // 시간표에 강의 정보를 배치
-                    for (Lecture lecture : lectureList) {
-                        addLectureToTimetable(lecture);
-                    }
-                } else {
-                    try {
-                        Log.e(TAG, "Response error: " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Log.e(TAG, "Error message: " + response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Lecture>> call, Throwable t) {
-                Log.e(TAG, "Request failed: " + t.getMessage(), t);
-                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }
 
