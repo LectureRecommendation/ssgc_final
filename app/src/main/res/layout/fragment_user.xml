@@ -62,7 +62,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.464" />
+            app:layout_constraintVertical_bias="0.469" />
 
         <EditText
             android:id="@+id/edt_major"
@@ -90,7 +90,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.254" />
+            app:layout_constraintVertical_bias="0.249" />
 
         <TextView
             android:id="@+id/inclass"
@@ -118,7 +118,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.394"
+            app:layout_constraintVertical_bias="0.382"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
@@ -159,13 +159,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.325"
+            app:layout_constraintVertical_bias="0.315"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/generalCount"
-            android:layout_width="301dp"
-            android:layout_height="40dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/view_border"
             android:padding="8dp"
             android:text="교양개수"
@@ -175,7 +175,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.555" />
+            app:layout_constraintVertical_bias="0.546" />
 
         <TextView
             android:id="@+id/emptytime"
@@ -192,7 +192,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.636" />
+            app:layout_constraintVertical_bias="0.627" />
 
         <EditText
             android:id="@+id/edt_general"
@@ -200,17 +200,17 @@
             android:layout_height="48dp"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.758"
+            app:layout_constraintHorizontal_bias="0.754"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.554"
+            app:layout_constraintVertical_bias="0.54"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/submit_button"
-            android:layout_width="154dp"
-            android:layout_height="39dp"
+            android:layout_width="248dp"
+            android:layout_height="47dp"
             android:layout_marginTop="8dp"
             android:text="추천 시간표 생성하기"
             app:layout_constraintEnd_toEndOf="parent"
@@ -229,7 +229,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.631"
+            app:layout_constraintVertical_bias="0.62"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
@@ -237,11 +237,11 @@
             android:layout_width="150dp"
             android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.77"
+            app:layout_constraintHorizontal_bias="0.781"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.247"
+            app:layout_constraintVertical_bias="0.24"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
