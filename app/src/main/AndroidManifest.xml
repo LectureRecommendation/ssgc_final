@@ -26,6 +26,10 @@
             <!-- Any other attributes or configurations you need for this Activity -->
         </activity>
         <activity android:name=".ClassSelect"></activity>
+        <activity
+            android:name=".Settings">
+            <!-- Any intent filters or other configurations for the Settings activity -->
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
