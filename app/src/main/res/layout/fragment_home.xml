@@ -43,11 +43,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:text="추천시간표"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="597dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="52dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

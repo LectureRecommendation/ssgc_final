@@ -35,6 +35,8 @@ import android.widget.EditText;
 import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import org.json.JSONObject;
+import org.json.JSONException;
+
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -43,12 +45,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserFragment extends Fragment {
 
+    private ApiService apiService;
     private TextView anotherTextView;
     private String TAG = "프래그먼트";
     EditText Grade;
@@ -65,8 +70,6 @@ public class UserFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
-
-
 
 
         Grade = view.findViewById(R.id.edt_grade);
@@ -96,44 +99,43 @@ public class UserFragment extends Fragment {
     }
 
     private void sendPostRequest() {
-        Thread thread = new Thread(new Runnable() {
+        ApiService apiService = RetrofitInstance.getApiService();
+
+        // 데이터를 JSON으로 변환하고 RequestBody 생성
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("year_input", Grade.getText());// 여기에 POST 요청에 필요한 데이터를 추가하세요.
+            jsonObject.put("exclude_courses_input", Outclass.getText());
+            jsonObject.put("include_courses_input", Inclass.getText());
+            jsonObject.put("free_times_input", Emptytime.getText());
+            jsonObject.put("major_count_input", Major.getText());
+            jsonObject.put("liberal_arts_count_input", General.getText());
+        } catch (Exception e) {
+            Log.e(TAG, "JSON Error: " + e.getMessage());
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
+
+        apiService.postFilteredAndSortedLectures(requestBody).enqueue(new Callback<List<Lecture>>() {
             @Override
-            public void run() {
-                try {
-                    URL url = new URL("http://127.0.0.1:5000/");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept","application/json");
-                    conn.setDoOutput(true);
-                    conn.setDoInput(true);
-
-                    JSONObject jsonParam = new JSONObject();
-                    jsonParam.put("year_input", Grade.getText().toString());
-                    jsonParam.put("exclude_courses_input", Outclass.getText().toString());
-                    jsonParam.put("include_courses_input", Inclass.getText().toString());
-                    jsonParam.put("free_times_input", Emptytime.getText().toString());
-                    jsonParam.put("major_count_input", Major.getText().toString());
-                    jsonParam.put("liberal_arts_count_input", General.getText().toString());
-                    // 다른 파라미터들 추가
-
-                    Log.i("JSON", jsonParam.toString());
-                    OutputStream os = conn.getOutputStream();
-                    os.write(jsonParam.toString().getBytes("UTF-8"));
-                    os.close();
-
-                    // 응답 읽기
-                    Scanner scanner = new Scanner(conn.getInputStream());
-                    while(scanner.hasNext()) {
-                        Log.i("RESPONSE", scanner.nextLine());
+            public void onResponse(Call<List<Lecture>> call, Response<List<Lecture>> response) {
+                if (response.isSuccessful()) {
+                    // POST 요청에 대한 응답을 처리하는 로직을 여기에 추가하세요.
+                } else {
+                    try {
+                        Log.e(TAG, "Response error: " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                    scanner.close();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.e(TAG, "Error message: " + response.message());
                 }
             }
+
+            @Override
+            public void onFailure(Call<List<Lecture>> call, Throwable t) {
+                Log.e(TAG, "Request failed: " + t.getMessage(), t);
+                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
-        thread.start();
     }
 }
