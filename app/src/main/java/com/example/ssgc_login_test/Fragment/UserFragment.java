@@ -127,8 +127,8 @@ public class UserFragment extends Fragment {
 
                     // 강의 목록을 텍스트 형태로 변환
                     for (Lecture lecture : lectures) {
-                        lecturesText.append(lecture.get강의명() + "\n");
-                        lecturesText.append(lecture.get교수명() + "\n");
+                        lecturesText.append(lecture.get강의명() + " ");
+                        lecturesText.append(lecture.get교수명() + " ");
                         lecturesText.append(lecture.get강의시간() + "\n");
                     }
                     // TextView에 강의 목록 설정
