@@ -114,7 +114,7 @@ public class UserFragment extends Fragment {
             Log.e(TAG, "JSON Error: " + e.getMessage());
         }
 
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), String.valueOf(jsonObject));
 
         apiService.postFilteredAndSortedLectures(requestBody).enqueue(new Callback<List<Lecture>>() {
             @Override
