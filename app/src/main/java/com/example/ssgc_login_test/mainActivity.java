@@ -93,7 +93,7 @@ public class mainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.home:
                         Log.i(TAG, "home 들어옴");
-                        getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_home).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_timetable).commitAllowingStateLoss();
                         return true;
                     case R.id.cal:
                         Log.i(TAG, "cal 들어옴");
