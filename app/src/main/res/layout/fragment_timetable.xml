@@ -107,8 +107,8 @@
                 android:id="@+id/tuesday1"
                 />
             <TextView
-                android:text="수"
-                android:layout_width="wrap_content"
+                android:text="북한학(정방호)"
+                android:layout_width="10dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:layout_gravity="center"
@@ -301,8 +301,8 @@
                 android:gravity="right"
                 />
             <TextView
-                android:text="월"
-                android:layout_width="wrap_content"
+                android:text="클라우드컴퓨팅(오장민)"
+                android:layout_width="10dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:layout_gravity="center"
@@ -334,8 +334,8 @@
                 android:id="@+id/wednesday4"
                 />
             <TextView
-                android:text="목"
-                android:layout_width="wrap_content"
+                android:text="심층학습(이규중)"
+                android:layout_width="10dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:layout_gravity="center"

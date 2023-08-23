@@ -19,7 +19,9 @@ import com.example.ssgc_login_test.Lecture;
 import com.example.ssgc_login_test.R;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TimetableFragment extends Fragment {
 
@@ -32,13 +34,13 @@ public class TimetableFragment extends Fragment {
 
         timetableLayout = view.findViewById(R.id.timetableLayout);
 
-        List<Lecture> lectures = DataStore.getInstance().getLectures();
-        if (lectures != null) {
+        //Map<String,String> dict = new HashMap<>()
+        //if (lectures != null) {
             // 레이아웃에 데이터 표시하기
-            for (Lecture lecture : lectures) {
-                addLectureToTimetable(lecture);
-            }
-        }
+           // for (Lecture lecture : lectures) {
+               // addLectureToTimetable(lecture);
+           // }
+       // }
 
         return view;
     }
