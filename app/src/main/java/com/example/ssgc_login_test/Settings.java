@@ -28,19 +28,5 @@ public class Settings extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public void onBackPressed() {
-        // 프래그먼트 매니저를 통해 프래그먼트 교체
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        // UserFragment로 교체
-        UserFragment userFragment = new UserFragment();
-        fragmentTransaction.replace(R.id.fragment_user, userFragment); // fragment_container는 프래그먼트를 담을 레이아웃의 ID입니다.
-        fragmentTransaction.addToBackStack(null); // 뒤로 가기 버튼을 눌렀을 때 이전 프래그먼트로 돌아갈 수 있도록 추가
-
-        fragmentTransaction.commit();
-    }
 }
 
